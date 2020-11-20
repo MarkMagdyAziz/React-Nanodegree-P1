@@ -30,40 +30,27 @@ class BooksApp extends React.Component {
     });
   }
   shelfChanger = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-    BooksAPI.getAll().then((books) => {
-      this.setState(() => ({ books: books }));
-    });
+    BooksAPI.update(book, shelf).then(() =>
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books: books });
+      })
+    );
   };
   render() {
     const { books } = this.state;
     //console.log("books", books);
     return (
       <div>
-        {/* <MainPage books={books} shelfChanger={this.shelfChanger} />
-        <SearchInputPage shelfChanger={this.shelfChanger} /> */}
         <Router>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <MainPage
-                {...props}
-                books={books}
-                shelfChanger={this.shelfChanger}
-              />
-            )}
-          />
-          <Route
-            path="/search"
-            render={(props) => (
-              <SearchInputPage
-                {...props}
-                shelfChanger={this.shelfChanger}
-                cmpBooks={books}
-              />
-            )}
-          />
+          <Route exact path="/">
+            <MainPage books={books} shelfChanger={this.shelfChanger} />
+          </Route>
+          <Route path="/search">
+            <SearchInputPage
+              shelfChanger={this.shelfChanger}
+              cmpBooks={books}
+            />
+          </Route>
         </Router>
       </div>
     );

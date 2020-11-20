@@ -41,7 +41,8 @@ class SearchInputPage extends Component {
         <div className="search-books-bar">
           <div className="close-search">
             <Link to="/">
-              <button className="close-search">close</button>
+              {/* <button className="close-search" /> */}
+              <i className="fas fa-arrow-left close-search">close</i>
             </Link>
           </div>
           <div className="search-books-input-wrapper">
@@ -56,11 +57,11 @@ class SearchInputPage extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.state.fetchedBooks.map((book) => {
-              let shelfStatus = "none";
-
-              this.props.cmpBooks.map((cmpBook) =>
-                cmpBook.id === book.id ? (shelfStatus = cmpBook.shelf) : ""
+              const bookOnShelf = this.props.cmpBooks.find(
+                ({ id }) => id === book.id
               );
+              const shelfStatus = bookOnShelf ? bookOnShelf.shelf : "none";
+
               return (
                 <li key={book.id}>
                   <Book

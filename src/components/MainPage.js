@@ -25,7 +25,7 @@ const MainPage = (props) => {
       </div>
       <div className="open-search">
         <Link to="/search">
-          <button>search</button>
+          <i className="fas fa-times-circle open-search">open</i>
         </Link>
       </div>
     </div>
