@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/React-Nanodegree-P1/precache-manifest.33c9e124e48867932d80c2160ee76ea5.js"
+  "/React-Nanodegree-P1/precache-manifest.9074260f2f5e60afd4c21d68d90fbbf8.js"
 );
 
 workbox.clientsClaim();
