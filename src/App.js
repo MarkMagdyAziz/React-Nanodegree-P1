@@ -38,7 +38,6 @@ class BooksApp extends React.Component {
   };
   render() {
     const { books } = this.state;
-    //console.log("books", books);
     return (
       <div>
         <Router>

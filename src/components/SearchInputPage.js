@@ -4,24 +4,15 @@ import Book from "./Book";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import "../App.css";
-
 class SearchInputPage extends Component {
   state = { fetchedBooks: [], query: "" };
 
-  /*handleQuery = (query) => {
-    //let query = this.state.query;
-    this.setState({ query: query.target.value });
-    this.handleFetchedBooks(query);
-    //console.log(query);
-  };*/
   handleQuery = (query) => {
-    this.setState({ query: query });
+    this.setState({ query });
     this.handleFetchedBooks(query);
   };
 
   handleFetchedBooks = (query) => {
-    //console.log("Hello from handleFetched func => query ", query);
     if (query) {
       BooksAPI.search(query).then((fetchedBooks) => {
         if (fetchedBooks.error) {
@@ -35,13 +26,11 @@ class SearchInputPage extends Component {
     }
   };
   render() {
-    //console.log(BooksAPI.search);
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <div className="close-search">
             <Link to="/">
-              {/* <button className="close-search" /> */}
               <i className="fas fa-arrow-left close-search">close</i>
             </Link>
           </div>
@@ -51,6 +40,7 @@ class SearchInputPage extends Component {
               placeholder="Search by title or author"
               value={this.state.query}
               onChange={(event) => this.handleQuery(event.target.value)}
+              autoFocus
             />
           </div>
         </div>

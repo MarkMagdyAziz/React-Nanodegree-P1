@@ -4,12 +4,7 @@ import PropTypes from "prop-types";
 const Book = (props) => {
   {
     let { book, currShelf, shelfChanger } = props;
-    // let { shelfChanger } = this.props;
-    //console.log("book", book);
-    // let handleChanger = (event) => {
-    //   shelfChanger = (event) => (book, event.target.value);
-    // };
-
+    const { imageLinks, authors, publishedDate, title } = book;
     return (
       <div className="book">
         <div className="book-top">
@@ -19,9 +14,7 @@ const Book = (props) => {
               width: 128,
               height: 193,
               backgroundImage: `url(${
-                book.imageLinks
-                  ? book.imageLinks.thumbnail
-                  : "icons/book-placeholder.svg"
+                imageLinks ? imageLinks.thumbnail : "icons/book-placeholder.svg"
               })`,
             }}
           />
@@ -30,7 +23,6 @@ const Book = (props) => {
               onChange={(event) => shelfChanger(book, event.target.value)}
               value={currShelf}
             >
-              {/* {console.log("book.shelf" + book.shelf)} */}
               <option value="move" disabled>
                 Move to...
               </option>
@@ -42,11 +34,9 @@ const Book = (props) => {
           </div>
         </div>
 
-        <div className="book-title">{book.title}</div>
-        <div className="book-authors">
-          {book.authors && book.authors.join(",")}
-        </div>
-        <div className="book-published-date">{book.publishedDate}</div>
+        <div className="book-title">{title}</div>
+        <div className="book-authors">{authors && authors.join(",")}</div>
+        <div className="book-published-date">{publishedDate}</div>
       </div>
     );
   }
@@ -54,5 +44,6 @@ const Book = (props) => {
 Book.propTypes = {
   book: PropTypes.object.isRequired,
   shelfChanger: PropTypes.func.isRequired,
+  currShelf: PropTypes.string.isRequired,
 };
 export default Book;

@@ -6,8 +6,7 @@ import WantToReadShelf from "./WantToReadShelf";
 import Read from "./Read";
 
 const MainPage = (props) => {
-  const { books } = props;
-  //console.log("books", this.props.books);
+  const { books, shelfChanger } = props;
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -15,12 +14,9 @@ const MainPage = (props) => {
       </div>
       <div className="list-books-content">
         <div>
-          <CurrentlyReadingShelf
-            books={books}
-            shelfChanger={props.shelfChanger}
-          />
-          <WantToReadShelf books={books} shelfChanger={props.shelfChanger} />
-          <Read books={books} shelfChanger={props.shelfChanger} />
+          <CurrentlyReadingShelf books={books} shelfChanger={shelfChanger} />
+          <WantToReadShelf books={books} shelfChanger={shelfChanger} />
+          <Read books={books} shelfChanger={shelfChanger} />
         </div>
       </div>
       <div className="open-search">
